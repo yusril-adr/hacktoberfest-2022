@@ -1,0 +1,12 @@
+body {
+  min-height: 100vh;
+  background-color: #211928;
+}
+
+img {
+  max-width: 100%;
+}
+
+header img {
+  max-width: 250px;
+}
