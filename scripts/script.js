@@ -1,7 +1,14 @@
 const getUsers = async () => {
   const response = await fetch('./resources/users.json');
   const users = await response.json();
-  return users;
+
+  const updatedUsers = await Promise.all(users.map(async (user) => {
+    const response = await fetch(`https://api.github.com/users/${user.username}`);
+    const data = await response.json();
+    return { ...user, name: data.name, avatar: data.avatar_url };
+  }));
+
+  return updatedUsers;
 };
 
 const renderList = async (users) => {
@@ -16,13 +23,8 @@ const renderList = async (users) => {
     return;
   }
 
-  const updatedUsers = await Promise.all(users.map(async (user) => {
-    const response = await fetch(`https://api.github.com/users/${user.username}`);
-    const data = await response.json();
-    return { ...user, name: data.name, avatar: data.avatar_url };
-  }));
   list.innerHTML = "";
-    updatedUsers.forEach(user => {
+    users.forEach(user => {
       list.innerHTML += `
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="card">
@@ -61,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       await renderList(filteredUsers);
     } catch (error) {
+      console.log(error);
       alert("Something went wrong, please try again later.");
     }
   })
