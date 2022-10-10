@@ -29,7 +29,7 @@ const renderList = async (users) => {
           <img src="${user.avatar}" class="card-img-top" alt="${user.username}">
           <div class="card-body">
             <p class="card-title mb-3">${user.name}</p>
-            <p class="card-text">${user.desc}</p>
+            <p class="card-text text-ellipsis">${user.desc}</p>
             <div class="d-flex">
               <a href="https://github.com/${user.username}" class="btn btn-primary mx-auto">Visit Github</a>
             </div>
