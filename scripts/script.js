@@ -55,7 +55,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const keyword = e.target['search'].value;
       
       const users = await getUsers();
-      const filteredUsers = users.filter(user => user.username.toLowerCase().includes(keyword.toLowerCase()));
+      const filteredUsers = users.filter(user => {
+        return user.username.toLowerCase().includes(keyword.toLowerCase()) || user.name.toLowerCase().includes(keyword.toLowerCase());
+      });
 
       await renderList(filteredUsers);
     } catch (error) {
