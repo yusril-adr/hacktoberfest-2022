@@ -2,4 +2,7 @@
 
 Anda hanya perlu menambahkan data diri anda dengan username github pada `resources/users.json`
 
+---
+Add your github username on `resources/users.json`
+
 Preview: [https://yusril-adr.github.io/hacktoberfest-2022/](https://yusril-adr.github.io/hacktoberfest-2022/)
